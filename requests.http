@@ -1,0 +1,309 @@
+POST http://127.0.0.1:5000/patients
+Content-Type: application/json
+
+{
+    "patient_id": "P1001",
+    "first_name": "Mahesh",
+    "last_name": "Malige",
+    "dob": "1993-01-01",
+    "gender": "Male",
+    "phone": "0891234567",
+    "email": "mahesh@gmail.com",
+    "address": "Dublin",
+    "blood_group": "O+",
+    "created_at": "2026-07-01 10:00:00"
+}
+###
+
+GET http://127.0.0.1:5000/patients/P1001
+
+###
+
+PUT http://127.0.0.1:5000/patients/P1001
+Content-Type: application/json
+
+{
+    "phone": "0877777777",
+    "email": "mahesh.updated@gmail.com",
+    "address": "Cork, Ireland"
+}
+###
+
+GET http://127.0.0.1:5000/patients/P1001
+
+###
+
+DELETE http://127.0.0.1:5000/patients/P1001
+###
+
+GET http://127.0.0.1:5000/patients/P1001
+
+###
+
+GET http://127.0.0.1:5000/providers
+###
+
+GET http://127.0.0.1:5000/providers/D001
+
+###
+
+POST http://127.0.0.1:5000/providers
+Content-Type: application/json
+
+{
+    "provider_id":"D101",
+    "first_name":"Mahesh",
+    "last_name":"Doctor",
+    "specialty":"Radiology",
+    "phone":"0899999999",
+    "email":"mahesh.doctor@hospital.ie"
+}
+###
+
+GET http://127.0.0.1:5000/providers/D101
+
+###
+
+PUT http://127.0.0.1:5000/providers/D101
+Content-Type: application/json
+
+{
+    "first_name":"Mahesh",
+    "last_name":"Consultant",
+    "specialty":"Cardiology",
+    "phone":"0877777777",
+    "email":"mahesh.consultant@hospital.ie"
+}
+###
+
+GET http://127.0.0.1:5000/providers/D101
+###
+
+DELETE http://127.0.0.1:5000/providers/D101
+###
+
+GET http://127.0.0.1:5000/providers/D101
+
+###
+
+GET http://127.0.0.1:5000/appointments
+
+###
+
+GET http://127.0.0.1:5000/appointments/1
+
+###
+
+GET http://127.0.0.1:5000/appointments
+
+
+GET http://127.0.0.1:5000/appointments/5001
+
+GET http://127.0.0.1:5000/appointments/5001
+
+
+###
+
+POST http://127.0.0.1:5000/appointments
+Content-Type: application/json
+
+{
+    "patient_id":"P0001",
+    "provider_id":"D001",
+    "appointment_date":"2026-08-01 10:30",
+    "status":"Scheduled"
+}
+
+POST http://127.0.0.1:5000/appointments
+Content-Type: application/json
+
+{
+    "patient_id": "P0001",
+    "provider_id": "D001",
+    "appointment_date": "2026-08-01 10:30",
+    "status": "Scheduled"
+}
+
+PUT http://127.0.0.1:5000/appointments/5001
+Content-Type: application/json
+
+{
+    "appointment_date": "2026-09-10 14:00",
+    "status": "Completed"
+}
+
+DELETE http://127.0.0.1:5000/appointments/5001
+
+GET http://127.0.0.1:5000/appointments/5001
+
+PUT http://127.0.0.1:5000/appointments/5001
+
+###
+GET http://127.0.0.1:5000/appointments
+
+###
+
+GET http://127.0.0.1:5000/appointments/5001
+
+###
+
+POST http://127.0.0.1:5000/appointments
+Content-Type: application/json
+
+{
+    "patient_id": "P0001",
+    "provider_id": "D001",
+    "appointment_date": "2026-08-01 10:30",
+    "status": "Scheduled"
+}
+
+###
+
+PUT http://127.0.0.1:5000/appointments/5001
+Content-Type: application/json
+
+{
+    "appointment_date": "2026-09-10 14:00",
+    "status": "Completed"
+}
+
+###
+
+DELETE http://127.0.0.1:5000/appointments/5001
+
+###
+
+GET http://127.0.0.1:5000/allergies
+
+###
+GET http://127.0.0.1:5000/allergies/1
+
+###
+POST http://127.0.0.1:5000/allergies
+Content-Type: application/json
+
+{
+    "patient_id": "P0001",
+    "allergy_name": "Penicillin",
+    "severity": "High"
+}
+
+###
+PUT http://127.0.0.1:5000/allergies/2001
+Content-Type: application/json
+
+{
+    "allergy_name": "Seafood",
+    "severity": "Low"
+}
+
+###
+DELETE http://127.0.0.1:5000/allergies/2001
+
+###
+GET http://127.0.0.1:5000/allergies/2001
+
+###
+GET http://127.0.0.1:5000/medications
+
+###
+GET http://127.0.0.1:5000/medications/1
+
+###
+POST http://127.0.0.1:5000/medications
+Content-Type: application/json
+
+{
+    "patient_id": "P0001",
+    "medication_name": "Paracetamol",
+    "dosage": "500mg"
+}
+
+###
+PUT http://127.0.0.1:5000/medications/3001
+Content-Type: application/json
+
+{
+    "medication_name": "Ibuprofen",
+    "dosage": "400mg"
+}
+
+###
+DELETE http://127.0.0.1:5000/medications/3001
+
+###
+GET http://127.0.0.1:5000/medications/3001
+
+###
+GET http://127.0.0.1:5000/observations
+
+###
+GET http://127.0.0.1:5000/observations/1
+
+###
+POST http://127.0.0.1:5000/observations
+Content-Type: application/json
+
+{
+    "patient_id":"P0001",
+    "observation_type":"Blood Pressure",
+    "result":"120/80",
+    "observation_date":"2026-08-01 10:30"
+}
+
+###
+PUT http://127.0.0.1:5000/observations/10001
+Content-Type: application/json
+
+{
+    "observation_type":"Temperature",
+    "result":"37.2 C",
+    "observation_date":"2026-09-01 11:00"
+}
+
+###
+DELETE http://127.0.0.1:5000/observations/10001
+
+###
+GET http://127.0.0.1:5000/observations/10001
+
+###
+GET http://127.0.0.1:5000/patients/search?last_name=Smith
+###
+GET http://127.0.0.1:5000/patients/search?gender=Male
+
+###
+GET http://127.0.0.1:5000/patients/search?last_name=Smith
+
+###
+POST http://127.0.0.1:5000/hl7
+
+###
+POST http://127.0.0.1:5000/hl7
+Content-Type: text/plain
+
+MSH|^~\&|EPIC|HOSPITAL|LAB|LAB|202607012200||ADT^A01|12345|P|2.5
+PID|1||P1001||Mahesh^Malige||19930101|M
+
+###
+POST http://127.0.0.1:5000/hl7
+Content-Type: text/plain
+
+MSH|^~\&|EPIC|HOSPITAL|LAB|LAB|202607012200||ADT^A01|12345|P|2.5
+PID|1||P1001||Mahesh^Malige||19930101|M
+
+###
+POST http://127.0.0.1:5000/hl7
+Content-Type: text/plain
+
+MSH|^~\&|EPIC|HOSPITAL|LAB|LAB|202607012200||ADT^A01|12345|P|2.5
+PID|1||P1001||Mahesh^Malige||19930101|M
+
+###
+GET http://127.0.0.1:5000/patient
+
+###
+DELETE http://127.0.0.1:5000/patients
+
+###
+GET http://127.0.0.1:5000/patients/P9999
