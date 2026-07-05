@@ -863,3 +863,33 @@ def get_patients_by_age(age):
     connection.close()
 
     return [dict(patient) for patient in patients]
+
+@patient_routes.route("/appointments/details", methods=["GET"])
+def get_appointment_details():
+
+    connection = sqlite3.connect("patients.db")
+    connection.row_factory = sqlite3.Row
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT
+            a.appointment_id,
+            p.first_name || ' ' || p.last_name AS patient_name,
+            pr.first_name || ' ' || pr.last_name AS provider_name,
+            pr.specialty,
+            a.appointment_date,
+            a.status
+        FROM appointments a
+        JOIN patients p
+            ON a.patient_id = p.patient_id
+        JOIN providers pr
+            ON a.provider_id = pr.provider_id
+        ORDER BY a.appointment_date;
+    """)
+
+    appointments = cursor.fetchall()
+
+    connection.close()
+
+    return [dict(row) for row in appointments]
