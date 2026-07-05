@@ -353,7 +353,7 @@ This repository is continuously updated while practicing:
 
 **Mahesh Malige**
 
-Healthcare Interoperability | HL7 | REST APIs | Flask | Python | SQL
+Healthcare Integration Specialist | HL7 | REST APIs | Flask | Python | SQL
 
 Dublin, Ireland
 
