@@ -786,3 +786,80 @@ def hl7_to_json():
 
     return patient
 
+@patient_routes.route("/patients/<patient_id>/summary")
+def get_patient_summary(patient_id):
+
+    connection = sqlite3.connect("patients.db")
+    connection.row_factory = sqlite3.Row
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+    "SELECT * FROM patients WHERE patient_id = ?",
+    (patient_id,)
+)
+
+    patient = cursor.fetchone()
+
+    if not patient:
+     connection.close()
+     return {"message": "patient not found"}, 404
+
+    cursor.execute(
+    "SELECT * FROM appointments WHERE patient_id = ?",
+     (patient_id,)
+)
+
+    appointments = cursor.fetchall()
+
+    cursor.execute(
+    "SELECT * FROM allergies WHERE patient_id = ?",
+     (patient_id,)
+)
+
+    allergies = cursor.fetchall()
+
+    cursor.execute(
+    "SELECT * FROM medications WHERE patient_id = ?",
+     (patient_id,)
+)
+
+    medications = cursor.fetchall()
+
+    cursor.execute(
+    "SELECT * FROM observations WHERE patient_id = ?",
+     (patient_id,)
+)
+
+    observations = cursor.fetchall()
+
+    connection.close()
+
+    return {
+        "patient": dict(patient),
+        "appointments": [dict(a) for a in appointments],
+        "allergies": [dict(a) for a in allergies],
+        "medications": [dict(m) for m in medications],
+        "observations": [dict(o) for o in observations]
+}
+
+@patient_routes.route("/patients/age/<int:age>")
+def get_patients_by_age(age):
+
+    connection = sqlite3.connect("patients.db")
+    connection.row_factory = sqlite3.Row
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT *
+        FROM patients
+        WHERE (CAST(strftime('%Y', 'now') AS INTEGER) -
+               CAST(strftime('%Y', dob) AS INTEGER)) >= ?
+    """, (age,))
+
+    patients = cursor.fetchall()
+
+    connection.close()
+
+    return [dict(patient) for patient in patients]
